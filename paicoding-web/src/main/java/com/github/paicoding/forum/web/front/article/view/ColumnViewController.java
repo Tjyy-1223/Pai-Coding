@@ -9,6 +9,7 @@ import com.github.paicoding.forum.api.model.vo.PageParam;
 import com.github.paicoding.forum.api.model.vo.article.dto.*;
 import com.github.paicoding.forum.api.model.vo.comment.dto.TopCommentDTO;
 import com.github.paicoding.forum.api.model.vo.recommend.SideBarDTO;
+import com.github.paicoding.forum.core.mdc.MdcDot;
 import com.github.paicoding.forum.core.util.MarkdownConverter;
 import com.github.paicoding.forum.core.util.SpringUtil;
 import com.github.paicoding.forum.service.article.repository.entity.ColumnArticleDO;
@@ -92,6 +93,7 @@ public class ColumnViewController {
      * @return
      */
     @GetMapping(path = "{columnId}/{section}")
+    // @MdcDot(bizCode = "#columnId")
     public String articles(@PathVariable("columnId") Long columnId, @PathVariable("section") Integer section, Model model) {
         if (section <= 0) section = 1;
         // 查询专栏

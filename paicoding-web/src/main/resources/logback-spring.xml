@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- fixme 知识点：logback配置变量的姿势，如何读取Spring配置参数   -->
+    <!-- 从yml文件中读取配置 name表示配置名字 -->
     <springProperty scope="context" name="log.path" source="log.path" defaultValue="logs"/>
     <springProperty scope="context" name="log.env" source="env.name" defaultValue="NO"/>
+    <!-- 自定义一个配置属性 配置代表属性的名字 -->
     <property name="log.service.name" value="pai"/>
     <property name="log.req.name" value="req"/>
 
@@ -79,11 +81,12 @@
         </encoder>
     </appender>
 
+    <!-- 什么时候记录请求日志  只有自己使用req的时候才会记录响应时间 -->
     <logger name="req" level="info" additivity="false">
         <appender-ref ref="reqLog"/>
     </logger>
 
-
+    <!--  框架层级需要关注warn级别操作 -->
     <logger name="springfox.documentation.spring" level="warn" additivity="false">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="service"/>
